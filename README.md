@@ -20,7 +20,7 @@ python3 example/vector-save.py
 
 * vectordb query
 
- [참고] 임베딩 정보(223488345638을 기준으로 1500개 embedding 후 실행겨과)
+[참고] 임베딩 정보(223488345638을 기준으로 1500개 embedding 후 실행결과)
 
 ```sh
 export OPENAI_API_KEY=
@@ -97,4 +97,17 @@ python3 rag.py
 
 ```
 Python의 비동기 모델은 asyncio를 사용하여 구현됩니다. asyncio는 이벤트 루프를 기반으로 한 비동기 프로그래밍을 지원하는 라이브러리로, async/await 구문을 사용하여 비동기 코드를 작성할 수 있습니다. 이를 통해 여러 작업을 동시에 처리하고, I/O 바운드 작업을 효율적으로 처리할 수 있습니다. asyncio를 이용하면 비동기적인 작업을 처리하고 결과를 기다리지 않고 다음 작업을 실행할 수 있습니다.
+```
+
+질문내용 바꿔보기
+
+```python
+# rag.py
+
+rst = rag_chain.invoke("멍개란?")
+print(rst)
+```
+
+```
+멍개는 블로그에 등장하는 단어로, 특정한 의미나 내용을 알 수 없습니다.
 ```
