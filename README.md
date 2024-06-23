@@ -1,5 +1,31 @@
 # blog기반 RAG
 
+### example
+
+* llm prompt
+
+```sh
+export OPENAI_API_KEY=
+
+python3 example/llm-basic.py
+```
+
+* vectordb save
+
+```sh
+export OPENAI_API_KEY=
+
+python3 example/vector-save.py
+```
+
+* vectordb query
+
+```sh
+export OPENAI_API_KEY=
+
+python3 example/vector-query.py
+```
+
 ### usage
 
 * 포스팅 아이디 수집
@@ -30,3 +56,4 @@ export OPENAI_API_KEY=
 
 python3 rag.py
 ```
+
