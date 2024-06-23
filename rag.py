@@ -43,5 +43,8 @@ rag_chain = (
 )
 
 # Chain 실행
-rst = rag_chain.invoke("python의 비동기 모델을 설명해줘")
-print(rst)
+question = "python의 비동기 모델을 설명해줘"
+answer = rag_chain.invoke(question)
+
+print(f"Question: {question}")
+print(f"Answer: {answer}")
