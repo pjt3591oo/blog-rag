@@ -11,6 +11,7 @@ if (not os.environ['OPENAI_API_KEY']):
 def main():
     page_log = 'page_log.log'
     index = 0
+    
     with open(page_log, 'r') as f:
         lines = f.readlines()
         for line in lines:
@@ -19,6 +20,7 @@ def main():
             url = f'https://blog.naver.com/PostView.naver?blogId=pjt3591oo&logNo={log_no}'
             loader = WebBaseLoader(url)
 
+            # TODO: 필요없는 페이지 정보 제거 필요
             docs = loader.load()
 
             print()
@@ -26,8 +28,6 @@ def main():
             text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
             splits = text_splitter.split_documents(docs)
 
-            delay = random.randrange(300, 700)
-            
             # 임베딩 인덱싱
             vectorstore = Chroma.from_documents(
                 persist_directory='chroma',
@@ -36,6 +36,7 @@ def main():
             )
             vectorstore.persist()
 
+            delay = random.randrange(300, 700)
             print(f'[{index} / {len(lines)}] log no: {log_no}, docs length: {len(docs)}, text length: {len(splits)}, delay: {delay}ms')
             time.sleep(delay/1000)
 

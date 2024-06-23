@@ -7,7 +7,7 @@ if (not os.environ['OPENAI_API_KEY']):
 
 # vectorstore 디비 커넥션
 vectorstore = Chroma(
-    persist_directory='chroma',
+    persist_directory='../chroma',
     embedding_function=OpenAIEmbeddings()
 )
 

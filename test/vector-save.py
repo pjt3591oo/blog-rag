@@ -22,7 +22,7 @@ print(len(splits))
 
 # 인덱싱
 vectorstore = Chroma.from_documents(
-    persist_directory='chroma',
+    persist_directory='../chroma',
     documents=splits,
     embedding=OpenAIEmbeddings()
 )
