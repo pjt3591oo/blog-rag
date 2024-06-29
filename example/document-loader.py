@@ -27,10 +27,13 @@ def replace_no_need(text):
     t='''\n멍개\n ・ \nURL 복사\n 이웃추가\n본문 기타 기능\n                   공유하기\n                \n신고하기\n'''
     result = result.replace(t, ' ')
 
+    result = re.sub(r'\xa0', '', result)
+    result = re.sub(r'\u200b', ' ', result) # Zero Width Space" (ZWSP) 문자를 공백으로 대체: 눈에는 보이지 않지만 텍스트 내에 공백을 포함해야 할 때 사용
+
     return result
 
 
-log_no = '100178851757'
+log_no = '220250562202'
 url = f'https://blog.naver.com/PostView.naver?blogId=pjt3591oo&logNo={log_no}'
 
 loader = WebBaseLoader(
