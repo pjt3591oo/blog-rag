@@ -9,9 +9,29 @@ from bs4 import SoupStrainer
 if (not os.environ['OPENAI_API_KEY']):
     raise Exception('OPENAI_API_KEY is not set')
 
-def replace_multiple_newlines(text):
-    # 2개 이상의 연속된 줄 바꿈 문자를 하나로 치환
-    result = re.sub(r'\n+', '\n', text)
+def recursive_replace(text):
+    before = len(text)
+
+    result = re.sub(r'\n\t', '\n', text)
+    result = re.sub(r'\n+', '\n', result)
+    result = re.sub(r'\t+', '\t', result)
+
+    after = len(result)
+
+    if before != after:
+        return recursive_replace(result)
+
+    return result
+
+def replace_no_need(text):
+    pattern = r'\d{4}\.\s*\d{1,2}\.\s*\d{1,2}\.\s*\d{1,2}:\d{1,2}\s'
+    result = re.sub(pattern, '\n', text)
+
+    result = recursive_replace(result)
+
+    t='''\n멍개\n ・ \nURL 복사\n 이웃추가\n본문 기타 기능\n                   공유하기\n                \n신고하기\n'''
+    result = result.replace(t, ' ')
+
     return result
 
 def main():
@@ -41,7 +61,7 @@ def main():
             docs = loader.load()
             # 2개 이상의 연속된 줄 바꿈 문자를 하나로 치환
             for doc in docs:
-                doc.page_content = replace_multiple_newlines(doc.page_content)
+                doc.page_content = replace_no_need(doc.page_content)
 
             print()
 
